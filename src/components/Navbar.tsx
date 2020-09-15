@@ -12,7 +12,7 @@ export default function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <NavLink className="nav-link active" aria-current="page" to="/">Floor Plan Engine</NavLink>
+                            <NavLink className="nav-link" to="/">Floor Plan Engine</NavLink>
                             <NavLink className="nav-link" to="/Three">3D Embed</NavLink>
                             <NavLink className="nav-link" to="/Space">Space Api</NavLink>
             
