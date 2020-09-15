@@ -12,6 +12,6 @@ export default function FloorPlan() {
         fp.loadScene(demoSceneId)
     },[]);
     return (
-        <div id="floorplan" className="col-8 mx-auto"></div>
+        <div id="floorplan" className="col-md-8 col-sm-12 mx-auto"></div>
     )
 }
