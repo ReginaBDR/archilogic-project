@@ -37,24 +37,23 @@ export default function Space() {
         fp.loadScene(sceneId).then(() => {
             fp.on('click', (event: any) => handleSpaceClick( event, fp ));
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
-// evento onclick
+     // evento onclick
     const handleSpaceClick = (event: any, fp: any) => {
         const { spaces } = fp.getResourcesFromPosition(event.pos);
         spaces.forEach((space: any) => {
-        fillSpaceWithColor(space)
+        space.node.setHighlight({
+          fill: [236, 112, 99]
+        })
+        setTimeout(() => {
+            space.node.setHighlight()
+          }, 9000)
     })
 }
 
-//set highlight pintando el space
-    const fillSpaceWithColor = (space: any) => {
-        space.node.setHighlight({
-        fill: [236, 112, 99]
-        });
-    }
-    
     return (
         <div id="space"></div>
     )

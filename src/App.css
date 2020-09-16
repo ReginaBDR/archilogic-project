@@ -12,10 +12,6 @@ html, body {
   background-color: rgb(87, 87, 87);
 }
 
-#floorplan {
-  height: 92vh;
-}
-
-#space {
+#floorplan, #space {
   height: 92vh;
 }

@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react'
 
-
 declare var FloorPlanEngine: any
-
 
 export default function FloorPlan() {
     useEffect(() => {
