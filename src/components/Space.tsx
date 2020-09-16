@@ -29,24 +29,32 @@ const FloorPlanSettings = {
     }
 }
 
-interface FloorPlanProps {
-    sceneId: string,
-    tickets: any[],
-    onSpacesLoaded: any
-}
-
 export default function Space() {
     useEffect(() => {
         const sceneId = '940f2267-24a5-446e-8885-4ab76eab2585';
         const container = document.getElementById('space')
         const fp = new FloorPlanEngine(container, FloorPlanSettings)
-        fp.loadScene(sceneId)/* .then(() => {
-            setSpaces(fp.state.computed.spaces)
-            onSpacesLoaded(fp.state.computed.spaces)
-            fp.on('click', (event: any) => onRoomClick(event, fp));
-        }) */
+        fp.loadScene(sceneId).then(() => {
+            fp.on('click', (event: any) => handleSpaceClick( event, fp ));
+        })
     }, []);
 
+
+// evento onclick
+    const handleSpaceClick = (event: any, fp: any) => {
+        const { spaces } = fp.getResourcesFromPosition(event.pos);
+        spaces.forEach((space: any) => {
+        fillSpaceWithColor(space)
+    })
+}
+
+//set highlight pintando el space
+    const fillSpaceWithColor = (space: any) => {
+        space.node.setHighlight({
+        fill: [236, 112, 99]
+        });
+    }
+    
     return (
         <div id="space"></div>
     )
