@@ -5,7 +5,7 @@
 }
 
 html, body {
-  height: 93vh;
+  height: 100%;
 }
 
 .App {
@@ -13,9 +13,9 @@ html, body {
 }
 
 #floorplan {
-  height: 93vh;
+  height: 92vh;
 }
 
 #space {
-  height: 93vh;
+  height: 92vh;
 }
