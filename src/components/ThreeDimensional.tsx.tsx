@@ -25,6 +25,6 @@ export default function ThreeDimensional() {
     viewer.loadScene(demoSceneId)
   }, [divRef]);
   return (
-    <div ref={divRef} id="space"></div>
+    <div ref={divRef} id="container-3d"></div>
   )
 }

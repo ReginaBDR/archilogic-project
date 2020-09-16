@@ -9,9 +9,14 @@ html, body {
 }
 
 .App {
-  background-color: rgb(87, 87, 87);
+  background-color: rgb(240, 240, 240);
 }
 
-#floorplan, #space {
+#floorplan, #container-3d  {
   height: 92vh;
+}
+
+#space {
+  height: 65vh;
+  margin: 0 auto;
 }
