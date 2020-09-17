@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
-
-const { Column, ColumnGroup } = Table;
-
-const columns = [
-    {
-        title: 'Usage',
-        dataIndex: 'usageName',
-        key: 'usageName',
-    },
-    {
-        title: 'Program',
-        dataIndex: 'program',
-        key: 'program',
-    },
-    {
-        title: 'Area',
-        dataIndex: 'area',
-        key: 'area',
-        render: (area: number) => Number(Math.round(area)),
-    },
-];
-
+import { Table, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 declare var FloorPlanEngine: any
 
@@ -53,7 +32,33 @@ const FloorPlanSettings = {
 }
 
 export default function Space() {
-    const [spaces, setSpaces] = useState()
+    const [spaces, setSpaces] = useState<any[]>([])
+    const [floorPlan, setFloorPlan] = useState()
+
+    const columns = [
+        {
+            title: 'Usage',
+            dataIndex: 'usageName',
+            key: 'usageName',
+        },
+        {
+            title: 'Program',
+            dataIndex: 'program',
+            key: 'program',
+        },
+        {
+            title: 'Area',
+            dataIndex: 'area',
+            key: 'area',
+            render: (area: number) => Math.round(area),
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            render: (record: any) => <Button type="primary" icon={<SearchOutlined />} onClick={() => selectSpace(record.id)}>View</Button> 
+        },
+    ];
 
     useEffect(() => {
         const sceneId = '940f2267-24a5-446e-8885-4ab76eab2585';
@@ -61,9 +66,9 @@ export default function Space() {
         const fp = new FloorPlanEngine(container, FloorPlanSettings)
         fp.loadScene(sceneId).then(() => {
             setSpaces(fp.resources.spaces)
+            setFloorPlan(fp)
             fp.on('click', (event: any) => handleSpaceClick(event, fp));
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // evento onclick
@@ -76,16 +81,25 @@ export default function Space() {
         })
     }
 
+    //select spaces on floor plan from "View" on table
+    const selectSpace = (spaceId: string) => {
+        const space = spaces?.find((space: any) => space.id === spaceId)
+        spaces.forEach(() => {
+            space.node.setHighlight({
+                fill: [236, 112, 99]
+            })
+            setTimeout(() => {
+                space.node.setHighlight()
+              }, 2000)
+        })
+    }
+
+    
+
     return (
         <div className="space__container">
             <div id="space"></div>
-            <Table dataSource={spaces} columns={columns} pagination={{ defaultPageSize: 7 }} rowKey="id" className="data__table" >  
-                <ColumnGroup>
-                    <Column align="center" title="Usage" dataIndex="usageName" key="usageName" />
-                    <Column align="center" title="Program" dataIndex="program" key="program" />
-                    <Column align="center" title="Area" dataIndex="area" key="area" />
-                </ColumnGroup>
-            </Table>
+            <Table dataSource={spaces} columns={columns} pagination={{ defaultPageSize: 7 }} rowKey="id" className="data__table" />  
         </div>
     )
 }
