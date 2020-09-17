@@ -1,9 +1,9 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import ArchilogicEmbed from '@archilogic/embed-api'
-
 
 export default function ThreeDimensional() {
   const divRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+
   useEffect(() => {
     const demoSceneId = '940f2267-24a5-446e-8885-4ab76eab2585';
     const viewer = new ArchilogicEmbed(divRef.current, {
@@ -24,6 +24,7 @@ export default function ThreeDimensional() {
     })
     viewer.loadScene(demoSceneId)
   }, [divRef]);
+  
   return (
     <div ref={divRef} id="container-3d"></div>
   )

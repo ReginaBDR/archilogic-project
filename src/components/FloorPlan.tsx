@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 declare var FloorPlanEngine: any
 
@@ -8,8 +8,9 @@ export default function FloorPlan() {
         const container = document.getElementById('floorplan')
         const fp = new FloorPlanEngine(container)
         fp.loadScene(demoSceneId)
-    },[]);
+    }, []);
+    
     return (
-        <div id="floorplan" className="col-md-10 col-sm-12 mx-auto"></div>
+        <div id="floorplan"></div>
     )
 }

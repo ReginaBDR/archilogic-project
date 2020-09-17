@@ -65,8 +65,6 @@ export default function Space() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-
     // evento onclick
     const handleSpaceClick = (event: any, fp: any) => {
         const { spaces } = fp.getResourcesFromPosition(event.pos);
@@ -78,14 +76,14 @@ export default function Space() {
     }
 
     return (
-        <div>
+        <div className="space__container">
             <div id="space"></div>
-            <Table dataSource={spaces} columns={columns} pagination={{ defaultPageSize: 7 }} >
-                <ColumnGroup title="Name">
-                    <Column title="Usage" dataIndex="usageName" key="usageName" />
-                    <Column title="Program" dataIndex="program" key="program" />
+            <Table dataSource={spaces} columns={columns} pagination={{ defaultPageSize: 7 }} rowKey="id" className="data__table" >  
+                <ColumnGroup>
+                    <Column align="center" title="Usage" dataIndex="usageName" key="usageName" />
+                    <Column align="center" title="Program" dataIndex="program" key="program" />
+                    <Column align="center" title="Area" dataIndex="area" key="area" /* render={area.forEach((area: number) => {area.toFixed()})} */ />
                 </ColumnGroup>
-                <Column title="Area" dataIndex="area" key="area" />
             </Table>
         </div>
     )
