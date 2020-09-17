@@ -18,6 +18,7 @@ const columns = [
         title: 'Area',
         dataIndex: 'area',
         key: 'area',
+        render: (area: number) => Number(Math.round(area)),
     },
 ];
 
@@ -82,7 +83,7 @@ export default function Space() {
                 <ColumnGroup>
                     <Column align="center" title="Usage" dataIndex="usageName" key="usageName" />
                     <Column align="center" title="Program" dataIndex="program" key="program" />
-                    <Column align="center" title="Area" dataIndex="area" key="area" /* render={area.forEach((area: number) => {area.toFixed()})} */ />
+                    <Column align="center" title="Area" dataIndex="area" key="area" />
                 </ColumnGroup>
             </Table>
         </div>
